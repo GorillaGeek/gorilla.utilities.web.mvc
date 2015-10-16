@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Gorilla.Utilities.Enums;
 
 namespace Gorilla.Utilities.Web.Mvc.Models
 {
@@ -29,7 +30,7 @@ namespace Gorilla.Utilities.Web.Mvc.Models
 
             var orderFirst = this.order.First();
             var orderColumn = this.columns[int.Parse(orderFirst["column"])]["data"];
-            var orderDirection = orderFirst["dir"] != "asc" ? PaginationSettings.enSortOrder.Descending : PaginationSettings.enSortOrder.Ascending;
+            var orderDirection = orderFirst["dir"] != "asc" ? SortOrder.Descending : SortOrder.Ascending;
 
             var settings = new PaginationSettings(orderColumn)
             {
