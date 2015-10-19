@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>$id$</id>
-    <version>1.1.7.2</version>
+    <version>1.1.7.3</version>
     <title>$title$</title>
     <authors>Daniel Prado</authors>
     <owners>felipegouveiae</owners>
@@ -11,7 +11,7 @@
     <iconUrl>https://avatars2.githubusercontent.com/u/10532134</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Dropdown signture</releaseNotes>
+    <releaseNotes>custom index for template</releaseNotes>
     <copyright>Copyright 2015</copyright>
     <tags>Gorilla GorillaGeek Utilities Web MVC PCL Portable</tags>
   </metadata>
