@@ -83,15 +83,7 @@
   <ItemGroup>
     <Compile Include="ExtensionMethodsRazor.cs" />
     <Compile Include="ExtensionMethods.cs" />
-    <Compile Include="HtmlExtensions\EditorTemplateForExtensions.cs" />
-    <Compile Include="HtmlExtensions\CheckBoxTemplateForExtensions.cs" />
-    <Compile Include="HtmlExtensions\EnumDropDownListTemplateFor.cs" />
-    <Compile Include="HtmlExtensions\RadioButtonTemplateForExtensions.cs" />
-    <Compile Include="HtmlExtensions\HiddenTemplateForExtensions.cs" />
-    <Compile Include="HtmlExtensions\TextAreaTemplateForExtensions.cs" />
-    <Compile Include="HtmlExtensions\ValidationMessageTemplateFor.cs" />
     <Compile Include="HtmlExtensions\TemplateFor.cs" />
-    <Compile Include="HtmlExtensions\TextBoxTemplateForExtensions.cs" />
     <Compile Include="Models\DataTableRequest.cs" />
     <Compile Include="Models\DataTableResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

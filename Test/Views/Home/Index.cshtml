@@ -30,7 +30,11 @@
             </div>
 
             <div class="form-group">
-                <pre>@Html.EnumDropDownListTemplateFor(x => x.Sub[0].Sub[0].SelectType, null, null).ToString()</pre>
+                <pre>@Html.EnumDropDownListTemplateFor(x => x.Sub[0].Sub[0].SelectType).ToString()</pre>
+            </div>
+
+            <div class="form-group">
+                <pre>@Html.ValidationMessageFor(x => x.Sub[0].Sub[0].SelectType).ToString()</pre>
             </div>
         }
     </div>
