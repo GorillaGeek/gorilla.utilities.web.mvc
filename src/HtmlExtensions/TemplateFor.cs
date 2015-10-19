@@ -1,4 +1,5 @@
 ﻿using Gorilla.Utilities;
+using Gorilla.Utilities.Web.Mvc;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text.RegularExpressions;
@@ -94,13 +95,13 @@ namespace System.Web.Mvc.Html
             var fullName = htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(htmlFieldName);
 
             var find = new Regex(@"\[\d+\]");
-            var replace = "$index";
+            var replace = TemplateSettings.Index;
 
             var z = 0;
             while (find.Matches(fullName).Count > 0)
             {
-                fullName = fullName.ReplaceRegLastOccurrence(@"\[\d+\]", @"[{{ " + replace + @" }}]");
-                replace = "$parent." + replace;
+                fullName = fullName.ReplaceRegLastOccurrence(@"\[\d+\]", string.Format($"[{TemplateSettings.Pattern}]", replace));
+                replace = string.Format(TemplateSettings.ParentIndex, replace);
 
                 z++;
                 if (z == 100 || (numberReplace != null && z == numberReplace))
@@ -118,6 +119,25 @@ namespace System.Web.Mvc.Html
         private static string GenerateId(string fullName)
         {
             return fullName.Replace("[", "_").Replace("]", "_").Replace(".", "_").Replace("_$", ".$");
+        }
+
+        internal static string ReplaceNameAndId(string stringResult, HtmlHelper htmlHelper, LambdaExpression expression, int? numberReplace)
+        {
+            var htmlFieldName = ExpressionHelper.GetExpressionText(expression);
+            return ReplaceNameAndId(stringResult, htmlHelper, htmlFieldName, numberReplace);
+        }
+
+        internal static string ReplaceNameAndId(string stringResult, HtmlHelper htmlHelper, string htmlFieldName, int? numberReplace)
+        {
+            var nameReg = new Regex("\\sname=\"[^ \"]+\"");
+            var name = GenerateName(htmlHelper, htmlFieldName, numberReplace);
+            stringResult = nameReg.Replace(stringResult, $" name=\"{name}\"");
+
+            var idReg = new Regex("\\sid=\"[^ \"]+\"");
+            var id = GenerateId(name);
+            stringResult = idReg.Replace(stringResult, $"id=\"{id}\"");
+
+            return stringResult;
         }
     }
 }
