@@ -11,14 +11,21 @@ namespace System.Web.Mvc.Html
     /// </summary>
     public static class TemplateForExtensions
     {
-
+        public static MvcHtmlString DropDownListTemplateFor<TModel, TEnum>(
+            this HtmlHelper<TModel> htmlHelper,
+            Expression<Func<TModel, TEnum>> expression,
+            IEnumerable<SelectListItem> selectList,
+            object htmlAttributes = null)
+        {
+            return DropDownListTemplateFor(htmlHelper, expression, null, htmlAttributes);
+        }
 
         public static MvcHtmlString DropDownListTemplateFor<TModel, TEnum>(
            this HtmlHelper<TModel> htmlHelper,
            Expression<Func<TModel, TEnum>> expression,
            IEnumerable<SelectListItem> selectList,
            string optionLabel = null,
-           IDictionary<string, object> htmlAttributes = null)
+           object htmlAttributes = null)
         {
             var result = htmlHelper.DropDownListFor(expression, selectList, optionLabel, htmlAttributes);
             var stringResult = TemplateForExtensions.ReplaceNameAndId(result.ToString(), htmlHelper, expression, null);
@@ -27,10 +34,18 @@ namespace System.Web.Mvc.Html
         }
 
         public static MvcHtmlString EnumDropDownListTemplateFor<TModel, TEnum>(
+            this HtmlHelper<TModel> htmlHelper,
+            Expression<Func<TModel, TEnum>> expression,
+            object htmlAttributes = null)
+        {
+            return EnumDropDownListTemplateFor(htmlHelper, expression, null, htmlAttributes);
+        }
+
+        public static MvcHtmlString EnumDropDownListTemplateFor<TModel, TEnum>(
            this HtmlHelper<TModel> htmlHelper,
            Expression<Func<TModel, TEnum>> expression,
            string optionLabel = null,
-           IDictionary<string, object> htmlAttributes = null)
+           object htmlAttributes = null)
         {
             var result = htmlHelper.EnumDropDownListFor(expression, optionLabel, htmlAttributes);
             var stringResult = TemplateForExtensions.ReplaceNameAndId(result.ToString(), htmlHelper, expression, null);
